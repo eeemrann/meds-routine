@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f3f7f8">
+  <meta name="description" content="HeartCare — a simple daily medicine and wound-care checklist.">
+  <title>HeartCare — Daily Recovery</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <button class="brand" id="homeBrand" type="button" aria-label="HeartCare home">
+        <span class="brand-logo" aria-hidden="true">
+          <svg viewBox="0 0 48 48"><path d="M24 40S7 30 7 17.8C7 11.5 11.2 8 16.2 8c3.5 0 6.1 2 7.8 5 1.7-3 4.3-5 7.8-5C36.8 8 41 11.5 41 17.8 41 30 24 40 24 40Z"/><path d="M10 24h8l3.2-6.2 5.2 12.1 3.3-6H38"/></svg>
+        </span>
+        <span class="brand-words"><strong>HeartCare</strong><small data-i18n="tagline">Your daily recovery companion</small></span>
+      </button>
+      <div class="top-actions">
+        <label class="language-control">
+          <span class="sr-only" data-i18n="language">Language</span>
+          <select id="languageSelect" aria-label="Language">
+            <option value="both">English + বাংলা</option>
+            <option value="en">English</option>
+            <option value="bn">বাংলা</option>
+          </select>
+        </label>
+        <button class="theme-button" id="themeToggle" type="button" aria-label="Change colour theme">
+          <span id="themeGlyph" aria-hidden="true">☾</span><span id="themeLabel" data-i18n="darkMode">Dark mode</span>
+        </button>
+      </div>
+    </header>
+    <div class="visual-reminder" id="visualReminder" hidden aria-live="polite"></div>
+
+    <main>
+      <!-- HOME: only the main choices appear here; no long medicine list. -->
+      <section class="screen active" id="homeScreen">
+        <div class="welcome-card">
+          <div class="welcome-content">
+            <p class="overline" data-i18n="welcomeOverline">A GENTLE ROUTINE FOR RECOVERY</p>
+            <h1><span data-i18n="welcome">Welcome back</span><span class="heart"> ♥</span></h1>
+            <p class="welcome-sub" data-i18n="welcomeText">Let's take today one step at a time. Your medicines and care routine are organised here.</p>
+            <div class="welcome-date">
+              <span class="date-icon" aria-hidden="true">▦</span>
+              <span id="homeDate">—</span>
+              <span class="day-pill" id="planDay">Day 1 of 30</span>
+            </div>
+          </div>
+          <div class="welcome-art" aria-hidden="true">
+            <div class="art-circle"></div>
+            <div class="art-heart">♡</div>
+            <div class="art-cross">+</div>
+          </div>
+        </div>
+
+        <section class="today-card">
+          <div class="today-top">
+            <div>
+              <p class="overline" data-i18n="todaysCare">TODAY'S CARE</p>
+              <h2 data-i18n="dailyProgress">Daily progress</h2>
+            </div>
+            <strong id="homeProgressText">0%</strong>
+          </div>
+          <div class="progress-rail"><span id="homeProgressBar"></span></div>
+          <p class="progress-caption" id="homeProgressCaption">0 of 0 scheduled tasks completed</p>
+          <div class="session-mini-grid" id="homeSessionSummary"></div>
+        </section>
+
+        <section class="home-actions">
+          <div class="section-intro">
+            <p class="overline" data-i18n="yourCare">YOUR CARE</p>
+            <h2 data-i18n="whatWouldYouLike">What would you like to do?</h2>
+          </div>
+          <button class="home-action primary-action" data-go="medicineHub" type="button">
+            <span class="action-illustration medicine-illustration" aria-hidden="true">
+              <svg viewBox="0 0 80 80"><g transform="rotate(-38 40 40)"><rect x="16" y="27" width="48" height="26" rx="13" fill="#fff"/><path d="M40 27h11a13 13 0 0 1 0 26H40Z" fill="#8ccfc1"/><path d="M40 28v24" stroke="#c5d8d7" stroke-width="2"/></g></svg>
+            </span>
+            <span class="action-copy"><strong data-i18n="medicines">Medicines</strong><small data-i18n="medicineActionText">Morning · Noon · Night schedules</small><span class="action-link" data-i18n="openSchedule">Open medicine schedule →</span></span>
+            <span class="action-arrow" aria-hidden="true">›</span>
+          </button>
+          <div class="secondary-actions">
+            <button class="home-action secondary-action" data-go="woundScreen" type="button">
+              <span class="small-action-icon wound-icon" aria-hidden="true">✚</span>
+              <span class="action-copy"><strong data-i18n="woundCare">Wound care</strong><small data-i18n="woundActionText">Three daily applications</small></span>
+              <span class="action-arrow" aria-hidden="true">›</span>
+            </button>
+            <button class="home-action secondary-action" data-go="sosScreen" type="button">
+              <span class="small-action-icon sos-icon" aria-hidden="true">＋</span>
+              <span class="action-copy"><strong data-i18n="asNeeded">As-needed medicine</strong><small data-i18n="sosActionText">Only when prescribed / needed</small></span>
+              <span class="action-arrow" aria-hidden="true">›</span>
+            </button>
+          </div>
+          <div class="secondary-actions">
+            <button class="home-action secondary-action" data-go="historyScreen" type="button">
+              <span class="small-action-icon history-icon" aria-hidden="true">◷</span>
+              <span class="action-copy"><strong data-i18n="history">Medicine history</strong><small data-i18n="historyActionText">See what was taken or missed</small></span>
+              <span class="action-arrow" aria-hidden="true">›</span>
+            </button>
+            <button class="home-action secondary-action" data-go="settingsScreen" type="button">
+              <span class="small-action-icon settings-icon" aria-hidden="true">⚙</span>
+              <span class="action-copy"><strong data-i18n="settings">Settings & backup</strong><small data-i18n="settingsActionText">Dates, reminders and data backup</small></span>
+              <span class="action-arrow" aria-hidden="true">›</span>
+            </button>
+          </div>
+        </section>
+
+        <div class="home-safety-note">
+          <span aria-hidden="true">ⓘ</span>
+          <p data-i18n="homeSafety">Follow the hospital's discharge instructions. HeartCare records your checklist; it does not change doses or decide whether a medicine is safe.</p>
+        </div>
+      </section>
+
+      <!-- MEDICINE HUB -->
+      <section class="screen" id="medicineHubScreen">
+        <div class="screen-heading">
+          <button class="back-button" data-back="homeScreen" type="button"><span>‹</span><span data-i18n="home">Home</span></button>
+          <p class="overline" data-i18n="dailyMedicinePlan">DAILY MEDICINE PLAN</p>
+          <h1 data-i18n="chooseTime">Choose a time</h1>
+          <p class="screen-subtitle" data-i18n="chooseTimeText">Select Morning, Noon or Night. Only the medicines for that time will appear.</p>
+        </div>
+        <div class="date-navigator">
+          <button id="previousDate" type="button" aria-label="Previous day">‹</button>
+          <div class="date-navigator-center">
+            <strong id="hubDate">—</strong>
+            <small id="hubDayLabel">Day 1 of 30</small>
+          </div>
+          <button id="nextDate" type="button" aria-label="Next day">›</button>
+        </div>
+        <div class="date-notice" id="dateNotice" hidden></div>
+        <div class="time-choice-list" id="timeChoiceList"></div>
+        <button class="text-button" data-go="historyScreen" type="button"><span data-i18n="viewHistory">View medicine history</span> →</button>
+      </section>
+
+      <!-- ONE TIME-OF-DAY MEDICINE LIST -->
+      <section class="screen" id="sessionScreen">
+        <div class="screen-heading">
+          <button class="back-button" data-back="medicineHubScreen" type="button"><span>‹</span><span data-i18n="allTimes">All times</span></button>
+          <p class="overline" data-i18n="medicineChecklist">MEDICINE CHECKLIST</p>
+          <h1 id="sessionTitle">Morning</h1>
+          <p class="screen-subtitle" id="sessionSubtitle">Tick each medicine only after it has been taken.</p>
+        </div>
+        <div class="session-summary" id="sessionSummary"></div>
+        <div id="sessionAlert"></div>
+        <div class="medicine-card-list" id="medicineCardList"></div>
+        <div class="session-completion" id="sessionCompletion" hidden></div>
+        <button class="wide-button secondary-wide" data-back="medicineHubScreen" type="button"><span data-i18n="backToTimes">Back to Morning / Noon / Night</span></button>
+      </section>
+
+      <!-- WOUND CARE -->
+      <section class="screen" id="woundScreen">
+        <div class="screen-heading">
+          <button class="back-button" data-back="homeScreen" type="button"><span>‹</span><span data-i18n="home">Home</span></button>
+          <p class="overline" data-i18n="woundCareOverline">SURGICAL WOUND CARE</p>
+          <h1 data-i18n="woundCare">Wound care</h1>
+          <p class="screen-subtitle" data-i18n="woundIntro">Record each local application after it has been completed.</p>
+        </div>
+        <div class="care-product-card">
+          <div class="medicine-visual large-visual" id="woundMedicineVisual"></div>
+          <div class="product-copy">
+            <h2>Viodin Cream (Povidone Iodine Ointment/Cream)</h2>
+            <p data-i18n="iodineStrength">50 mg — as written on the discharge summary</p>
+            <div class="instruction-pill" data-i18n="applyLocally">Apply locally · 3 times daily</div>
+          </div>
+        </div>
+        <div class="duration-banner" id="woundDuration"></div>
+        <div class="wound-task-list" id="woundTaskList"></div>
+        <p class="subtle-note" data-i18n="woundSafety">Use on the surgical scar only as directed by the surgical team. Confirm the exact product and strength on the tube.</p>
+      </section>
+
+      <!-- SOS: ONLY MEDICINE 18 -->
+      <section class="screen" id="sosScreen">
+        <div class="screen-heading">
+          <button class="back-button" data-back="homeScreen" type="button"><span>‹</span><span data-i18n="home">Home</span></button>
+          <p class="overline" data-i18n="asNeededOverline">AS-NEEDED MEDICINE</p>
+          <h1 data-i18n="asNeeded">As-needed medicine</h1>
+          <p class="screen-subtitle" data-i18n="sosIntro">Only record use when it has actually been given according to the doctor's instructions.</p>
+        </div>
+        <article class="sos-medicine-card">
+          <div class="medicine-visual large-visual" id="sosMedicineVisual"></div>
+          <div class="sos-medicine-copy">
+            <span class="sos-tag">SOS</span>
+            <h2>Tranal 100 (Tramadol HCl suppository)</h2>
+            <p class="medicine-bengali">ট্রামাডল এইচসিএল সাপোজিটরি</p>
+            <p>100 mg · 1 stick · P/R</p>
+            <p class="food-instruction" data-i18n="rectalRoute">Rectal use only — not for swallowing.</p>
+            <p class="food-instruction" data-i18n="sosDuration">Prescribed window: 5 days from the first-dose date.</p>
+          </div>
+          <button class="wide-button" id="logSosButton" type="button" data-i18n="logUse">Log use</button>
+          <div class="sos-history" id="sosHistory"></div>
+        </article>
+        <div class="warning-card">
+          <strong data-i18n="sosWarningTitle">Important</strong>
+          <p data-i18n="sosWarning">Follow the doctor's exact dose, interval and maximum-use instructions. This log does not decide when another dose is safe. If pain is severe or worsening after surgery, contact the treating team.</p>
+        </div>
+      </section>
+
+      <!-- HISTORY -->
+      <section class="screen" id="historyScreen">
+        <div class="screen-heading">
+          <button class="back-button" data-back="homeScreen" type="button"><span>‹</span><span data-i18n="home">Home</span></button>
+          <p class="overline" data-i18n="historyOverline">YOUR RECORD</p>
+          <h1 data-i18n="history">Medicine history</h1>
+          <p class="screen-subtitle" data-i18n="historyIntro">Past entries are shown as taken, marked missed or not recorded. Blank entries are not automatically treated as missed.</p>
+        </div>
+        <div class="history-date-card">
+          <label for="historyDate" data-i18n="chooseDate">Choose a date</label>
+          <input type="date" id="historyDate" min="2026-11-12">
+          <button class="button button-primary" id="editHistoryDate" type="button" data-i18n="editThisDay">Open this day's checklist</button>
+        </div>
+        <div class="history-detail-card" id="historyDetail"></div>
+        <h2 class="subsection-title" data-i18n="recentDays">Recent days</h2>
+        <div class="history-list" id="historyList"></div>
+      </section>
+
+      <!-- SETTINGS -->
+      <section class="screen" id="settingsScreen">
+        <div class="screen-heading">
+          <button class="back-button" data-back="homeScreen" type="button"><span>‹</span><span data-i18n="home">Home</span></button>
+          <p class="overline" data-i18n="settingsOverline">PERSONALISE HEARTCARE</p>
+          <h1 data-i18n="settings">Settings & backup</h1>
+          <p class="screen-subtitle" data-i18n="settingsIntro">Set the tracking dates and optional on-page reminder times. No sound or system notifications are used.</p>
+        </div>
+        <div class="settings-card">
+          <label class="setting-field"><span data-i18n="firstDoseDate">First-dose date (for medicine duration)</span><input type="date" id="firstDoseDate"></label>
+          <label class="setting-field"><span data-i18n="trackingStart">30-day tracking starts</span><input type="date" id="trackingStartDate"></label>
+          <div class="settings-divider"></div>
+          <h2 data-i18n="optionalTimes">Optional visual reminder times</h2>
+          <p class="subtle-note" data-i18n="optionalTimesText">Leave blank if you do not want an on-page time reminder. The page must stay open.</p>
+          <div class="reminder-time-grid">
+            <label class="setting-field"><span data-i18n="morning">Morning</span><input type="time" id="morningReminder"></label>
+            <label class="setting-field"><span data-i18n="noon">Noon</span><input type="time" id="noonReminder"></label>
+            <label class="setting-field"><span data-i18n="night">Night</span><input type="time" id="nightReminder"></label>
+          </div>
+          <button class="wide-button" id="saveSettings" type="button" data-i18n="saveSettings">Save settings</button>
+        </div>
+        <div class="settings-card backup-card">
+          <h2 data-i18n="backupTitle">Backup your records</h2>
+          <p class="subtle-note" data-i18n="backupText">Data is saved in this browser on this phone. Export a backup regularly, especially before changing phones or browsers.</p>
+          <div class="backup-buttons">
+            <button class="button button-secondary" id="exportBackup" type="button" data-i18n="downloadBackup">Download backup</button>
+            <button class="button button-plain" id="importBackupButton" type="button" data-i18n="restoreBackup">Restore backup</button>
+            <input type="file" id="importBackupFile" accept="application/json,.json" hidden>
+          </div>
+        </div>
+        <details class="reference-details">
+          <summary data-i18n="prescriptionReference">Prescription reference (items 1–19)</summary>
+          <div id="referenceList"></div>
+        </details>
+        <div class="warning-card">
+          <strong data-i18n="medicalSafetyTitle">Please verify the prescription</strong>
+          <p data-i18n="medicalSafetyText">All 19 medicines in the supplied list are included. Don-A (Domperidone, #12) is listed as SOS on the discharge sheet, while this tracker shows the 1+1+1 before-meal schedule supplied for tracking. Confirm the intended frequency with the prescriber/pharmacist. Never double a missed dose or change a medicine based on this app.</p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="app-footer">
+      <strong>HeartCare</strong>
+      <span data-i18n="footerText">A family checklist — not a substitute for medical advice.</span>
+    </footer>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <noscript><p class="noscript">HeartCare needs JavaScript enabled to run.</p></noscript>
+</body>
+</html>
