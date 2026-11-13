@@ -7,7 +7,8 @@
 const KEYS = {
   storage: "heartcare-mobile-v2",
   shareVersion: 1,
-  planStartDefault: "2026-11-14",
+  planStartDefault: "2026-11-12",
+  legacyPlanStartDefault: "2026-11-14",
   firstDoseDefault: "2026-11-12",
   trackingDays: 30,
   historyStart: "2026-11-12"
@@ -22,7 +23,7 @@ const slotInfo = {
 const meds = [
   { id:1, brand:"Linez 600", en:"Linezolid", bn:"লাইনেজোলিড", strength:"600 mg tablet", freq:"1+0+1", duration:7, unit:"days", meal:"after", schedule:{morning:1,night:1} },
   { id:2, brand:"Clamox 625", en:"Amoxicillin + Clavulanic Acid", bn:"অ্যামোক্সিসিলিন + ক্ল্যাভুলানিক অ্যাসিড", strength:"500 mg + 125 mg tablet", freq:"1+1+1", duration:7, unit:"days", meal:"after", schedule:{morning:1,noon:1,night:1} },
-  { id:3, brand:"Carvista 6.25", en:"Carvedilol", bn:"কারভেডিলল", strength:"6.25 mg tablet", freq:"½+0+½", duration:30, unit:"days", meal:"unknown", continued:true, schedule:{morning:"½",night:"½"}, doseNote:"split" },
+  { id:3, brand:"Carvista 6.25", en:"Carvedilol", bn:"কারভেডিলল", strength:"6.25 mg tablet", freq:"½+0+½", duration:30, unit:"days", meal:"unknown", continued:true, schedule:{morning:"½",night:"½"} },
   { id:4, brand:"Nitrofix SR", en:"Glyceryl Trinitrate", bn:"গ্লিসারিল ট্রাইনাইট্রেট", strength:"2.6 mg tablet", freq:"1+1+0", duration:30, unit:"days", meal:"after", continued:true, schedule:{morning:1,noon:1} },
   { id:5, brand:"Ecosprin 75", en:"Aspirin (Enteric Coated)", bn:"অ্যাসপিরিন (এন্টারিক কোটেড)", strength:"75 mg", freq:"0+1+0", duration:30, unit:"days", meal:"after", continued:true, schedule:{noon:1} },
   { id:6, brand:"Dclot", en:"Clopidogrel", bn:"ক্লোপিডোগ্রেল", strength:"75 mg tablet", freq:"0+0+1", duration:30, unit:"days", meal:"after", continued:true, schedule:{night:1} },
@@ -57,7 +58,7 @@ const translations = {
   asNeededOverline:["AS-NEEDED MEDICINE","প্রয়োজনমতো ওষুধ"], sosIntro:["Only record use when it has actually been given according to the doctor's instructions.","চিকিৎসকের নির্দেশনা অনুযায়ী বাস্তবে ব্যবহার করার পরেই নথিভুক্ত করুন।"], rectalRoute:["Rectal use only — not for swallowing.","শুধু পায়ুপথে ব্যবহার — মুখে খাওয়ার জন্য নয়।"], sosDuration:["Prescribed window: 5 days from the first-dose date.","প্রথম ডোজের তারিখ থেকে নির্ধারিত সময়: ৫ দিন।"], logUse:["Log use","ব্যবহার নথিভুক্ত করুন"], sosWarningTitle:["Important","গুরুত্বপূর্ণ"], sosWarning:["Follow the doctor's exact dose, interval and maximum-use instructions. This log does not decide when another dose is safe. If pain is severe or worsening after surgery, contact the treating team.","চিকিৎসকের নির্দিষ্ট ডোজ, ব্যবধান ও সর্বোচ্চ ব্যবহারের নির্দেশনা অনুসরণ করুন। এই হিসাব পরবর্তী ডোজ নিরাপদ কি না নির্ধারণ করে না। অস্ত্রোপচারের পর ব্যথা তীব্র বা বাড়তে থাকলে চিকিৎসক দলের সঙ্গে যোগাযোগ করুন।"],
   historyOverline:["YOUR RECORD","আপনার হিসাব"], historyIntro:["Past entries are shown as taken, marked missed or not recorded. Blank entries are not automatically treated as missed.","আগের হিসাব নেওয়া হয়েছে, বাদ গেছে বা নথিভুক্ত হয়নি—এভাবে দেখানো হবে। ফাঁকা ঘরকে নিজে থেকে বাদ গেছে বলে ধরা হবে না।"], chooseDate:["Choose a date","তারিখ নির্বাচন করুন"], editThisDay:["Open this day's checklist","এই দিনের চেকলিস্ট খুলুন"], recentDays:["Recent days","সাম্প্রতিক দিনগুলো"],
   settingsOverline:["PERSONALISE HEARTCARE","HeartCare সাজিয়ে নিন"], settingsIntro:["Set the tracking dates and optional on-page reminder times. No sound or system notifications are used.","ট্র্যাকিংয়ের তারিখ এবং চাইলে পেজের ভেতরের রিমাইন্ডারের সময় দিন। কোনো শব্দ বা সিস্টেম নোটিফিকেশন ব্যবহার করা হয় না।"], firstDoseDate:["First-dose date (for medicine duration)","প্রথম ডোজের তারিখ (ওষুধের মেয়াদ গণনার জন্য)"], trackingStart:["30-day tracking starts","৩০ দিনের ট্র্যাকিং শুরু"], textSize:["Text size","লেখার আকার"], textSizeText:["Choose a comfortable size. Large is recommended for easier reading.","সহজে পড়ার জন্য সুবিধাজনক আকার বেছে নিন। বড় আকারটি সুপারিশ করা হচ্ছে।"], fontSizeNormal:["Standard","স্বাভাবিক"], fontSizeLarge:["Large","বড়"], fontSizeExtraLarge:["Extra large","আরও বড়"], optionalTimes:["Optional visual reminder times","ঐচ্ছিক দৃশ্যমান রিমাইন্ডারের সময়"], optionalTimesText:["Leave blank if you do not want an on-page time reminder. The page must stay open.","পেজে সময়ভিত্তিক রিমাইন্ডার না চাইলে ফাঁকা রাখুন। পেজ খোলা রাখতে হবে।"], morning:["Morning","সকাল"], noon:["Noon","দুপুর"], night:["Night","রাত"], saveSettings:["Save settings","সেটিংস সংরক্ষণ করুন"], backupTitle:["Backup your records","আপনার তথ্যের ব্যাকআপ নিন"], backupText:["Data is saved in this browser on this phone. Export a backup regularly, especially before changing phones or browsers.","তথ্য এই ফোনের এই ব্রাউজারে সংরক্ষিত থাকে। ফোন বা ব্রাউজার বদলানোর আগে নিয়মিত ব্যাকআপ ডাউনলোড করুন।"], downloadBackup:["Download backup","ব্যাকআপ ডাউনলোড"], restoreBackup:["Restore backup","ব্যাকআপ ফিরিয়ে আনুন"], sharedLinkTitle:["Shared update link","শেয়ার করা আপডেট লিংক"], sharedLinkText:["Anyone with the latest link can open and update this same checklist. No account is needed.","সর্বশেষ লিংক যাঁর কাছে থাকবে, তিনি একই চেকলিস্ট খুলে আপডেট করতে পারবেন। কোনো অ্যাকাউন্ট লাগবে না।"], sharedLinkLive:["LIVE LINK","লাইভ লিংক"], copySharedLink:["Copy latest link","সর্বশেষ লিংক কপি করুন"], sharedLinkPrivacy:["The link contains the routine and its records. Share it only with people you trust. After an update, copy the refreshed link again.","লিংকের মধ্যে রুটিন ও হিসাব থাকে। শুধু বিশ্বাসযোগ্য মানুষের সঙ্গে শেয়ার করুন। আপডেটের পর নতুন লিংকটি আবার কপি করে পাঠান।"], sharedLinkReady:["This link contains the latest checklist.","এই লিংকে সর্বশেষ চেকলিস্ট আছে।"], prescriptionReference:["Prescription reference (items 1–19)","প্রেসক্রিপশন রেফারেন্স (১–১৯)"],
-  daysTaken:["days in course","দিনের কোর্সে"], daysLeft:["days left","দিন বাকি"], courseStarts:["Starts on","শুরু হবে"], courseComplete:["Course complete","কোর্স সম্পন্ন"], splitDose:["½ tablet morning + ½ tablet night","সকালে ½ ট্যাবলেট + রাতে ½ ট্যাবলেট"], firstDoseTime:["First-dose time of day","প্রথম ডোজের সময়"],
+  daysTaken:["days in course","দিনের কোর্সে"], daysLeft:["days left","দিন বাকি"], courseStarts:["Starts on","শুরু হবে"], courseComplete:["Course complete","কোর্স সম্পন্ন"], firstDoseTime:["First-dose time of day","প্রথম ডোজের সময়"],
   medicalSafetyTitle:["Please verify the prescription","প্রেসক্রিপশনটি নিশ্চিত করুন"], medicalSafetyText:["All 19 medicines in the supplied list are included. Don-A (Domperidone, #12) is listed as SOS on the discharge sheet, while this tracker shows the 1+1+1 before-meal schedule supplied for tracking. Confirm the intended frequency with the prescriber/pharmacist. Never double a missed dose or change a medicine based on this app.","আপনার দেওয়া ১৯টি ওষুধই এখানে অন্তর্ভুক্ত। ডিসচার্জ শিটে Don-A (Domperidone, #১২)-এর পাশে SOS লেখা আছে, আর এই ট্র্যাকার-এ ১+১+১ খাবারের আগের সময়সূচি দেখানো হয়েছে। সঠিক ব্যবহারের নিয়ম চিকিৎসক/ফার্মাসিস্টের সঙ্গে নিশ্চিত করুন। বাদ যাওয়া ডোজ কখনো দ্বিগুণ করবেন না বা এই অ্যাপ দেখে ওষুধ পরিবর্তন করবেন না।"],
   footerText:["A family checklist — not a substitute for medical advice.","পরিবারের চেকলিস্ট — চিকিৎসকের পরামর্শের বিকল্প নয়।"], close:["Close","বন্ধ করুন"], viewImage:["View medicine image full screen","ওষুধের ছবি পুরো পর্দায় দেখুন"]
 };
@@ -93,13 +94,21 @@ function isTimeValue(value) {
 function normaliseSettings(settings) {
   const raw = isPlainObject(settings) ? settings : {};
   const reminders = isPlainObject(raw.reminders) ? raw.reminders : {};
+  const firstDoseDate = isDateKey(raw.firstDoseDate) ? raw.firstDoseDate : defaultState.settings.firstDoseDate;
+  const firstDoseSlot = ["morning", "noon", "night"].includes(raw.firstDoseSlot) ? raw.firstDoseSlot : defaultState.settings.firstDoseSlot;
+  const savedTrackingStart = isDateKey(raw.trackingStartDate) ? raw.trackingStartDate : defaultState.settings.trackingStartDate;
+  const trackingStartDate = savedTrackingStart === KEYS.legacyPlanStartDefault
+    && firstDoseDate === KEYS.firstDoseDefault
+    && firstDoseSlot === defaultState.settings.firstDoseSlot
+    ? KEYS.planStartDefault
+    : savedTrackingStart;
   return {
     language: raw.language === "bn" ? "bn" : "en",
     theme: ["light", "dark"].includes(raw.theme) ? raw.theme : defaultState.settings.theme,
     fontSize: ["normal", "large", "xlarge"].includes(raw.fontSize) ? raw.fontSize : defaultState.settings.fontSize,
-    firstDoseDate: isDateKey(raw.firstDoseDate) ? raw.firstDoseDate : defaultState.settings.firstDoseDate,
-    firstDoseSlot: ["morning", "noon", "night"].includes(raw.firstDoseSlot) ? raw.firstDoseSlot : defaultState.settings.firstDoseSlot,
-    trackingStartDate: isDateKey(raw.trackingStartDate) ? raw.trackingStartDate : defaultState.settings.trackingStartDate,
+    firstDoseDate,
+    firstDoseSlot,
+    trackingStartDate,
     reminders: {
       morning: isTimeValue(reminders.morning) ? reminders.morning : "",
       noon: isTimeValue(reminders.noon) ? reminders.noon : "",
@@ -566,7 +575,7 @@ function renderSession() {
           <div class="medicine-title-row"><h3>${m.id}. ${safe(medicineDisplayName(m))}</h3><span class="status-label ${statusClass}">${safe(statusLabel)}</span></div>
           <p class="medicine-bengali">${safe(m.bn)}</p>
           <div class="medicine-strength">${safe(m.strength)}</div>
-          <div class="dose-food-row"><span class="dose-pill">${safe(amount)}</span>${meal?`<span class="food-pill ${meal.cls}">${safe(meal.label)}</span>`:""}${m.doseNote==="split"?`<span class="dose-note">${safe(tr("splitDose"))}</span>`:""}</div>
+          <div class="dose-food-row"><span class="dose-pill">${safe(amount)}</span>${meal?`<span class="food-pill ${meal.cls}">${safe(meal.label)}</span>`:""}</div>
           <div class="medicine-progress">${safe(progressText)}</div>
         </div>
         <div class="medicine-actions">

@@ -160,7 +160,6 @@ button:focus-visible, input:focus-visible, select:focus-visible { outline: 3px s
 .dose-pill, .food-pill { border-radius: 8px; padding: 4px 7px; font-size: calc(9px * var(--font-scale)); font-weight: 700; background: var(--brand-soft); color: var(--brand2); }
 .food-pill.before { background: var(--amber-soft); color: var(--amber); }
 .food-pill.after { background: var(--green-soft); color: var(--green); }
-.dose-note { border-radius: 8px; padding: 4px 7px; font-size: calc(9px * var(--font-scale)); font-weight: 700; background: var(--blue-soft); color: var(--blue); }
 .medicine-progress { margin-top: 8px; color: var(--muted); font-size: calc(9px * var(--font-scale)); font-weight: 700; }
 .medicine-actions { grid-column: 1 / -1; display: flex; gap: 8px; margin-top: 1px; }
 .take-button, .miss-button, .undo-button {
