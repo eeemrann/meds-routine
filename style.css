@@ -227,6 +227,14 @@ button:focus-visible, input:focus-visible, select:focus-visible { outline: 3px s
 .backup-card { margin-top: 12px; }
 .backup-card h2 { margin: 0; }
 .backup-buttons { display: flex; flex-wrap: wrap; gap: 8px; }
+.share-card { margin-top: 12px; }
+.share-card-heading { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+.share-card-heading h2 { margin: 0; }
+.share-card-heading .subtle-note { margin-bottom: 0; }
+.share-live-pill { flex: 0 0 auto; padding: 4px 7px; border-radius: 99px; background: var(--green-soft); color: var(--green); font-size: calc(8px * var(--font-scale)); font-weight: 800; letter-spacing: .6px; }
+.share-link-input { width: 100%; min-height: 43px; margin: 3px 0 1px; padding: 0 10px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface2); color: var(--muted); font-size: calc(9px * var(--font-scale)); }
+.share-privacy-note, .share-link-status { margin: 0; color: var(--muted); font-size: calc(9px * var(--font-scale)); line-height: 1.45; }
+.share-link-status { color: var(--green); font-weight: 700; }
 .button { min-height: 40px; border-radius: 10px; padding: 8px 12px; border: 1px solid transparent; font-size: calc(10px * var(--font-scale)); font-weight: 800; }
 .button-primary { color: #fff; background: var(--brand); }
 .button-secondary { color: var(--brand2); background: var(--brand-soft); border-color: var(--line); }

@@ -254,6 +254,19 @@
             <input type="file" id="importBackupFile" accept="application/json,.json" hidden>
           </div>
         </div>
+        <div class="settings-card share-card">
+          <div class="share-card-heading">
+            <div>
+              <h2 data-i18n="sharedLinkTitle">Shared update link</h2>
+              <p class="subtle-note" data-i18n="sharedLinkText">Anyone with the latest link can open and update this same checklist. No account is needed.</p>
+            </div>
+            <span class="share-live-pill" data-i18n="sharedLinkLive">LIVE LINK</span>
+          </div>
+          <input class="share-link-input" id="shareLinkInput" type="text" readonly aria-label="Shared update link">
+          <button class="wide-button" id="copyShareLink" type="button" data-i18n="copySharedLink">Copy latest link</button>
+          <p class="share-privacy-note" data-i18n="sharedLinkPrivacy">The link contains the routine and its records. Share it only with people you trust. After an update, copy the refreshed link again.</p>
+          <p class="share-link-status" id="shareLinkStatus" aria-live="polite"></p>
+        </div>
         <details class="reference-details">
           <summary data-i18n="prescriptionReference">Prescription reference (items 1–19)</summary>
           <div id="referenceList"></div>

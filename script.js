@@ -6,6 +6,7 @@
 
 const KEYS = {
   storage: "heartcare-mobile-v2",
+  shareVersion: 1,
   planStartDefault: "2026-11-14",
   firstDoseDefault: "2026-11-12",
   trackingDays: 30,
@@ -55,7 +56,7 @@ const translations = {
   woundCareOverline:["SURGICAL WOUND CARE","অস্ত্রোপচারের ক্ষতের যত্ন"], woundIntro:["Record each local application after it has been completed.","প্রতিবার লাগানো শেষ হলে এখানে চিহ্নিত করুন।"], iodineStrength:["50 mg — as written on the discharge summary","৫০ মিগ্রা — ডিসচার্জ সামারিতে যেভাবে লেখা"], applyLocally:["Apply locally · 3 times daily","স্থানীয়ভাবে লাগান · দিনে ৩ বার"], woundSafety:["Use on the surgical scar only as directed by the surgical team. Confirm the exact product and strength on the tube.","সার্জারি টিমের নির্দেশনা অনুযায়ী শুধু ক্ষতে ব্যবহার করুন। টিউবের সঠিক নাম ও মাত্রা মিলিয়ে নিন।"],
   asNeededOverline:["AS-NEEDED MEDICINE","প্রয়োজনমতো ওষুধ"], sosIntro:["Only record use when it has actually been given according to the doctor's instructions.","চিকিৎসকের নির্দেশনা অনুযায়ী বাস্তবে ব্যবহার করার পরেই নথিভুক্ত করুন।"], rectalRoute:["Rectal use only — not for swallowing.","শুধু পায়ুপথে ব্যবহার — মুখে খাওয়ার জন্য নয়।"], sosDuration:["Prescribed window: 5 days from the first-dose date.","প্রথম ডোজের তারিখ থেকে নির্ধারিত সময়: ৫ দিন।"], logUse:["Log use","ব্যবহার নথিভুক্ত করুন"], sosWarningTitle:["Important","গুরুত্বপূর্ণ"], sosWarning:["Follow the doctor's exact dose, interval and maximum-use instructions. This log does not decide when another dose is safe. If pain is severe or worsening after surgery, contact the treating team.","চিকিৎসকের নির্দিষ্ট ডোজ, ব্যবধান ও সর্বোচ্চ ব্যবহারের নির্দেশনা অনুসরণ করুন। এই হিসাব পরবর্তী ডোজ নিরাপদ কি না নির্ধারণ করে না। অস্ত্রোপচারের পর ব্যথা তীব্র বা বাড়তে থাকলে চিকিৎসক দলের সঙ্গে যোগাযোগ করুন।"],
   historyOverline:["YOUR RECORD","আপনার হিসাব"], historyIntro:["Past entries are shown as taken, marked missed or not recorded. Blank entries are not automatically treated as missed.","আগের হিসাব নেওয়া হয়েছে, বাদ গেছে বা নথিভুক্ত হয়নি—এভাবে দেখানো হবে। ফাঁকা ঘরকে নিজে থেকে বাদ গেছে বলে ধরা হবে না।"], chooseDate:["Choose a date","তারিখ নির্বাচন করুন"], editThisDay:["Open this day's checklist","এই দিনের চেকলিস্ট খুলুন"], recentDays:["Recent days","সাম্প্রতিক দিনগুলো"],
-  settingsOverline:["PERSONALISE HEARTCARE","HeartCare সাজিয়ে নিন"], settingsIntro:["Set the tracking dates and optional on-page reminder times. No sound or system notifications are used.","ট্র্যাকিংয়ের তারিখ এবং চাইলে পেজের ভেতরের রিমাইন্ডারের সময় দিন। কোনো শব্দ বা সিস্টেম নোটিফিকেশন ব্যবহার করা হয় না।"], firstDoseDate:["First-dose date (for medicine duration)","প্রথম ডোজের তারিখ (ওষুধের মেয়াদ গণনার জন্য)"], trackingStart:["30-day tracking starts","৩০ দিনের ট্র্যাকিং শুরু"], textSize:["Text size","লেখার আকার"], textSizeText:["Choose a comfortable size. Large is recommended for easier reading.","সহজে পড়ার জন্য সুবিধাজনক আকার বেছে নিন। বড় আকারটি সুপারিশ করা হচ্ছে।"], fontSizeNormal:["Standard","স্বাভাবিক"], fontSizeLarge:["Large","বড়"], fontSizeExtraLarge:["Extra large","আরও বড়"], optionalTimes:["Optional visual reminder times","ঐচ্ছিক দৃশ্যমান রিমাইন্ডারের সময়"], optionalTimesText:["Leave blank if you do not want an on-page time reminder. The page must stay open.","পেজে সময়ভিত্তিক রিমাইন্ডার না চাইলে ফাঁকা রাখুন। পেজ খোলা রাখতে হবে।"], morning:["Morning","সকাল"], noon:["Noon","দুপুর"], night:["Night","রাত"], saveSettings:["Save settings","সেটিংস সংরক্ষণ করুন"], backupTitle:["Backup your records","আপনার তথ্যের ব্যাকআপ নিন"], backupText:["Data is saved in this browser on this phone. Export a backup regularly, especially before changing phones or browsers.","তথ্য এই ফোনের এই ব্রাউজারে সংরক্ষিত থাকে। ফোন বা ব্রাউজার বদলানোর আগে নিয়মিত ব্যাকআপ ডাউনলোড করুন।"], downloadBackup:["Download backup","ব্যাকআপ ডাউনলোড"], restoreBackup:["Restore backup","ব্যাকআপ ফিরিয়ে আনুন"], prescriptionReference:["Prescription reference (items 1–19)","প্রেসক্রিপশন রেফারেন্স (১–১৯)"],
+  settingsOverline:["PERSONALISE HEARTCARE","HeartCare সাজিয়ে নিন"], settingsIntro:["Set the tracking dates and optional on-page reminder times. No sound or system notifications are used.","ট্র্যাকিংয়ের তারিখ এবং চাইলে পেজের ভেতরের রিমাইন্ডারের সময় দিন। কোনো শব্দ বা সিস্টেম নোটিফিকেশন ব্যবহার করা হয় না।"], firstDoseDate:["First-dose date (for medicine duration)","প্রথম ডোজের তারিখ (ওষুধের মেয়াদ গণনার জন্য)"], trackingStart:["30-day tracking starts","৩০ দিনের ট্র্যাকিং শুরু"], textSize:["Text size","লেখার আকার"], textSizeText:["Choose a comfortable size. Large is recommended for easier reading.","সহজে পড়ার জন্য সুবিধাজনক আকার বেছে নিন। বড় আকারটি সুপারিশ করা হচ্ছে।"], fontSizeNormal:["Standard","স্বাভাবিক"], fontSizeLarge:["Large","বড়"], fontSizeExtraLarge:["Extra large","আরও বড়"], optionalTimes:["Optional visual reminder times","ঐচ্ছিক দৃশ্যমান রিমাইন্ডারের সময়"], optionalTimesText:["Leave blank if you do not want an on-page time reminder. The page must stay open.","পেজে সময়ভিত্তিক রিমাইন্ডার না চাইলে ফাঁকা রাখুন। পেজ খোলা রাখতে হবে।"], morning:["Morning","সকাল"], noon:["Noon","দুপুর"], night:["Night","রাত"], saveSettings:["Save settings","সেটিংস সংরক্ষণ করুন"], backupTitle:["Backup your records","আপনার তথ্যের ব্যাকআপ নিন"], backupText:["Data is saved in this browser on this phone. Export a backup regularly, especially before changing phones or browsers.","তথ্য এই ফোনের এই ব্রাউজারে সংরক্ষিত থাকে। ফোন বা ব্রাউজার বদলানোর আগে নিয়মিত ব্যাকআপ ডাউনলোড করুন।"], downloadBackup:["Download backup","ব্যাকআপ ডাউনলোড"], restoreBackup:["Restore backup","ব্যাকআপ ফিরিয়ে আনুন"], sharedLinkTitle:["Shared update link","শেয়ার করা আপডেট লিংক"], sharedLinkText:["Anyone with the latest link can open and update this same checklist. No account is needed.","সর্বশেষ লিংক যাঁর কাছে থাকবে, তিনি একই চেকলিস্ট খুলে আপডেট করতে পারবেন। কোনো অ্যাকাউন্ট লাগবে না।"], sharedLinkLive:["LIVE LINK","লাইভ লিংক"], copySharedLink:["Copy latest link","সর্বশেষ লিংক কপি করুন"], sharedLinkPrivacy:["The link contains the routine and its records. Share it only with people you trust. After an update, copy the refreshed link again.","লিংকের মধ্যে রুটিন ও হিসাব থাকে। শুধু বিশ্বাসযোগ্য মানুষের সঙ্গে শেয়ার করুন। আপডেটের পর নতুন লিংকটি আবার কপি করে পাঠান।"], sharedLinkReady:["This link contains the latest checklist.","এই লিংকে সর্বশেষ চেকলিস্ট আছে।"], prescriptionReference:["Prescription reference (items 1–19)","প্রেসক্রিপশন রেফারেন্স (১–১৯)"],
   daysTaken:["days in course","দিনের কোর্সে"], daysLeft:["days left","দিন বাকি"], courseStarts:["Starts on","শুরু হবে"], courseComplete:["Course complete","কোর্স সম্পন্ন"], splitDose:["½ tablet morning + ½ tablet night","সকালে ½ ট্যাবলেট + রাতে ½ ট্যাবলেট"], firstDoseTime:["First-dose time of day","প্রথম ডোজের সময়"],
   medicalSafetyTitle:["Please verify the prescription","প্রেসক্রিপশনটি নিশ্চিত করুন"], medicalSafetyText:["All 19 medicines in the supplied list are included. Don-A (Domperidone, #12) is listed as SOS on the discharge sheet, while this tracker shows the 1+1+1 before-meal schedule supplied for tracking. Confirm the intended frequency with the prescriber/pharmacist. Never double a missed dose or change a medicine based on this app.","আপনার দেওয়া ১৯টি ওষুধই এখানে অন্তর্ভুক্ত। ডিসচার্জ শিটে Don-A (Domperidone, #১২)-এর পাশে SOS লেখা আছে, আর এই ট্র্যাকার-এ ১+১+১ খাবারের আগের সময়সূচি দেখানো হয়েছে। সঠিক ব্যবহারের নিয়ম চিকিৎসক/ফার্মাসিস্টের সঙ্গে নিশ্চিত করুন। বাদ যাওয়া ডোজ কখনো দ্বিগুণ করবেন না বা এই অ্যাপ দেখে ওষুধ পরিবর্তন করবেন না।"],
   footerText:["A family checklist — not a substitute for medical advice.","পরিবারের চেকলিস্ট — চিকিৎসকের পরামর্শের বিকল্প নয়।"], close:["Close","বন্ধ করুন"], viewImage:["View medicine image full screen","ওষুধের ছবি পুরো পর্দায় দেখুন"]
@@ -139,7 +140,112 @@ function normaliseState(raw) {
     medStartDates: normaliseMedStartDates(source.medStartDates)
   };
 }
+function compactShareState(source) {
+  const sharedLogs = {};
+  Object.entries(source.logs || {}).forEach(([date, rawLog]) => {
+    if (!isDateKey(date) || !isPlainObject(rawLog)) return;
+    const doses = {};
+    Object.entries(rawLog.doses || {}).forEach(([key, entry]) => {
+      if (entry?.status === "taken") doses[key] = "t";
+      if (entry?.status === "missed") doses[key] = "m";
+    });
+    const sos = Array.isArray(rawLog.sos)
+      ? rawLog.sos.filter(entry => isPlainObject(entry) && typeof entry.at === "string").map(entry => entry.at)
+      : [];
+    if (Object.keys(doses).length || sos.length) sharedLogs[date] = { d: doses, s: sos };
+  });
+  return {
+    v: KEYS.shareVersion,
+    s: {
+      l: source.settings.language,
+      t: source.settings.theme,
+      f: source.settings.fontSize,
+      fd: source.settings.firstDoseDate,
+      fs: source.settings.firstDoseSlot,
+      ts: source.settings.trackingStartDate,
+      r: source.settings.reminders,
+      md: source.medStartDates || {}
+    },
+    l: sharedLogs
+  };
+}
+function expandShareState(payload) {
+  if (!isPlainObject(payload) || payload.v !== KEYS.shareVersion || !isPlainObject(payload.s) || !isPlainObject(payload.l)) return null;
+  const settings = payload.s;
+  const logs = {};
+  Object.entries(payload.l).forEach(([date, rawLog]) => {
+    if (!isDateKey(date) || !isPlainObject(rawLog)) return;
+    const doses = {};
+    if (isPlainObject(rawLog.d)) {
+      Object.entries(rawLog.d).forEach(([key, status]) => {
+        if (status === "t") doses[key] = { status: "taken" };
+        if (status === "m") doses[key] = { status: "missed" };
+      });
+    }
+    const sos = Array.isArray(rawLog.s)
+      ? rawLog.s.filter(at => typeof at === "string").map(at => ({ medicineId: 18, at }))
+      : [];
+    if (Object.keys(doses).length || sos.length) logs[date] = { doses, wound: {}, sos };
+  });
+  return normaliseState({
+    settings: {
+      language: settings.l,
+      theme: settings.t,
+      fontSize: settings.f,
+      firstDoseDate: settings.fd,
+      firstDoseSlot: settings.fs,
+      trackingStartDate: settings.ts,
+      reminders: settings.r
+    },
+    logs,
+    medStartDates: settings.md
+  });
+}
+function encodeSharePayload(payload) {
+  const binary = btoa(JSON.stringify(payload));
+  return binary.replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/g, "");
+}
+function decodeSharePayload(token) {
+  const binary = atob(token.replace(/-/g, "+").replace(/_/g, "/") + "=".repeat((4 - token.length % 4) % 4));
+  return JSON.parse(binary);
+}
+function readSharedStateFromUrl() {
+  if (typeof window === "undefined") return null;
+  const hash = window.location.hash || "";
+  if (!hash.startsWith("#share=")) return null;
+  try {
+    return expandShareState(decodeSharePayload(hash.slice(7)));
+  } catch (error) {
+    console.warn("HeartCare shared link could not be read.", error);
+    return null;
+  }
+}
+function shareLinkForState() {
+  if (typeof window === "undefined") return "";
+  const url = new URL(window.location.href);
+  url.hash = `share=${encodeSharePayload(compactShareState(state))}`;
+  return url.href;
+}
+function updateShareLinkUi() {
+  const input = document.getElementById("shareLinkInput");
+  if (!input) return;
+  input.value = shareLinkForState();
+  const status = document.getElementById("shareLinkStatus");
+  if (status) status.textContent = tr("sharedLinkReady");
+}
+function syncShareLink() {
+  if (typeof window === "undefined") return;
+  const link = shareLinkForState();
+  try {
+    window.history.replaceState(null, "", link);
+  } catch (error) {
+    window.location.hash = link.split("#")[1] || "";
+  }
+  updateShareLinkUi();
+}
 function loadState() {
+  const shared = readSharedStateFromUrl();
+  if (shared) return shared;
   try {
     const saved = JSON.parse(localStorage.getItem(KEYS.storage) || "null");
     if (!saved) return clone(defaultState);
@@ -149,6 +255,7 @@ function loadState() {
 function saveState() {
   try { localStorage.setItem(KEYS.storage,JSON.stringify(state)); }
   catch(e) { showToast(tx("Could not save. Please download a backup and check phone storage.","সংরক্ষণ করা যায়নি। ব্যাকআপ ডাউনলোড করুন এবং ফোনের স্টোরেজ দেখুন।")); }
+  syncShareLink();
 }
 function tx(en,bn) {
   return state.settings.language==="bn" ? bn : en;
@@ -546,6 +653,7 @@ function renderSettings() {
     <div class="reference-copy"><strong>${m.id}. ${safe(medicineDisplayName(m))}</strong>
     <span>${safe(m.strength)} · ${safe(m.freq)} · ${m.duration} ${m.unit}${m.continued?" · Continue: Yes":""}${m.meal==="before"?" · Before food":m.meal==="after"?" · After food":""}</span></div>
   </article>`).join("");
+  updateShareLinkUi();
 }
 function renderReminder() {
   const now=new Date(), hh=String(now.getHours()).padStart(2,"0"), mm=String(now.getMinutes()).padStart(2,"0"), current=`${hh}:${mm}`;
@@ -641,6 +749,29 @@ function importBackup(file) {
   };
   reader.readAsText(file);
 }
+async function copyShareLink() {
+  syncShareLink();
+  const link=shareLinkForState();
+  try {
+    await navigator.clipboard.writeText(link);
+  } catch (error) {
+    const input=document.getElementById("shareLinkInput");
+    if (!input) return;
+    input.focus();
+    input.select();
+    document.execCommand("copy");
+    input.setSelectionRange(0,0);
+  }
+  showToast(tx("Latest shared link copied.","সর্বশেষ শেয়ার লিংক কপি হয়েছে।"));
+}
+function loadStateFromSharedLink() {
+  const shared=readSharedStateFromUrl();
+  if (!shared) return;
+  state=shared;
+  selectedDate=defaultSelectedDate();
+  renderAll();
+  showToast(tx("Shared checklist loaded.","শেয়ার করা চেকলিস্ট লোড হয়েছে।"));
+}
 function bindEvents() {
   document.getElementById("homeBrand").addEventListener("click",()=>showScreen("homeScreen"));
   document.getElementById("languageSelect").addEventListener("change",e=>{state.settings.language=e.target.value;saveState();renderAll();});
@@ -685,11 +816,21 @@ function bindEvents() {
   document.getElementById("exportBackup").addEventListener("click",exportBackup);
   document.getElementById("importBackupButton").addEventListener("click",()=>document.getElementById("importBackupFile").click());
   document.getElementById("importBackupFile").addEventListener("change",e=>{importBackup(e.target.files?.[0]);e.target.value="";});
+  document.getElementById("copyShareLink").addEventListener("click",copyShareLink);
+  window.addEventListener("hashchange",loadStateFromSharedLink);
+  window.addEventListener("storage",e=>{
+    if(e.key!==KEYS.storage||!e.newValue) return;
+    try {
+      state=normaliseState(JSON.parse(e.newValue));
+      renderAll();
+    } catch(error) { console.warn("HeartCare shared browser state could not be read.",error); }
+  });
 }
 function initialise() {
   selectedDate=defaultSelectedDate();
   bindEvents();
   renderAll();
+  syncShareLink();
   setInterval(renderReminder,60000);
 }
 document.addEventListener("DOMContentLoaded",initialise);
