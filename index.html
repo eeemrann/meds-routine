@@ -184,7 +184,7 @@
             <p class="medicine-bengali">ট্রামাডল এইচসিএল সাপোজিটরি</p>
             <p>100 mg · 1 stick · P/R</p>
             <p class="food-instruction" data-i18n="rectalRoute">Rectal use only — not for swallowing.</p>
-            <p class="food-instruction" data-i18n="sosDuration">Prescribed window: 5 days from the first-dose date.</p>
+            <p class="food-instruction" id="sosDurationText" data-i18n="sosDuration">Prescribed window: 5 days from the first-dose date.</p>
           </div>
           <button class="wide-button" id="logSosButton" type="button" data-i18n="logUse">Log use</button>
           <div class="sos-history" id="sosHistory"></div>
@@ -205,7 +205,7 @@
         </div>
         <div class="history-date-card">
           <label for="historyDate" data-i18n="chooseDate">Choose a date</label>
-          <input type="date" id="historyDate" min="2026-11-12">
+          <input type="date" id="historyDate">
           <button class="button button-primary" id="editHistoryDate" type="button" data-i18n="editThisDay">Open this day's checklist</button>
         </div>
         <div class="history-detail-card" id="historyDetail"></div>
@@ -223,7 +223,18 @@
         </div>
         <div class="settings-card">
           <label class="setting-field"><span data-i18n="firstDoseDate">First-dose date (for medicine duration)</span><input type="date" id="firstDoseDate"></label>
+          <label class="setting-field"><span data-i18n="firstDoseTime">First-dose time of day</span><select id="firstDoseSlot">
+            <option value="morning" data-i18n="morning">Morning</option>
+            <option value="noon" data-i18n="noon">Noon</option>
+            <option value="night" data-i18n="night">Night</option>
+          </select></label>
           <label class="setting-field"><span data-i18n="trackingStart">30-day tracking starts</span><input type="date" id="trackingStartDate"></label>
+          <label class="setting-field"><span data-i18n="textSize">Text size</span><select id="fontSizeSelect" aria-describedby="textSizeHelp">
+            <option value="normal" data-i18n="fontSizeNormal">Standard</option>
+            <option value="large" data-i18n="fontSizeLarge">Large</option>
+            <option value="xlarge" data-i18n="fontSizeExtraLarge">Extra large</option>
+          </select></label>
+          <p class="subtle-note" id="textSizeHelp" data-i18n="textSizeText">Choose a comfortable size. Large is recommended for easier reading.</p>
           <div class="settings-divider"></div>
           <h2 data-i18n="optionalTimes">Optional visual reminder times</h2>
           <p class="subtle-note" data-i18n="optionalTimesText">Leave blank if you do not want an on-page time reminder. The page must stay open.</p>
@@ -260,6 +271,13 @@
     </footer>
   </div>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <div class="image-lightbox" id="imageLightbox" hidden role="dialog" aria-modal="true" aria-labelledby="imageLightboxCaption">
+    <button class="lightbox-close" id="closeImageLightbox" type="button" aria-label="Close"><span data-i18n="close">Close</span><span aria-hidden="true">×</span></button>
+    <figure class="lightbox-figure">
+      <img id="imageLightboxImage" alt="">
+      <figcaption id="imageLightboxCaption"></figcaption>
+    </figure>
+  </div>
   <noscript><p class="noscript">HeartCare needs JavaScript enabled to run.</p></noscript>
 </body>
 </html>

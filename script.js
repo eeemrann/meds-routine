@@ -21,7 +21,7 @@ const slotInfo = {
 const meds = [
   { id:1, brand:"Linez 600", en:"Linezolid", bn:"লাইনেজোলিড", strength:"600 mg tablet", freq:"1+0+1", duration:7, unit:"days", meal:"after", schedule:{morning:1,night:1} },
   { id:2, brand:"Clamox 625", en:"Amoxicillin + Clavulanic Acid", bn:"অ্যামোক্সিসিলিন + ক্ল্যাভুলানিক অ্যাসিড", strength:"500 mg + 125 mg tablet", freq:"1+1+1", duration:7, unit:"days", meal:"after", schedule:{morning:1,noon:1,night:1} },
-  { id:3, brand:"Carvista 6.25", en:"Carvedilol", bn:"কারভেডিলল", strength:"6.25 mg tablet", freq:"½+0+½", duration:30, unit:"days", meal:"unknown", continued:true, schedule:{morning:"½",night:"½"} },
+  { id:3, brand:"Carvista 6.25", en:"Carvedilol", bn:"কারভেডিলল", strength:"6.25 mg tablet", freq:"½+0+½", duration:30, unit:"days", meal:"unknown", continued:true, schedule:{morning:"½",night:"½"}, doseNote:"split" },
   { id:4, brand:"Nitrofix SR", en:"Glyceryl Trinitrate", bn:"গ্লিসারিল ট্রাইনাইট্রেট", strength:"2.6 mg tablet", freq:"1+1+0", duration:30, unit:"days", meal:"after", continued:true, schedule:{morning:1,noon:1} },
   { id:5, brand:"Ecosprin 75", en:"Aspirin (Enteric Coated)", bn:"অ্যাসপিরিন (এন্টারিক কোটেড)", strength:"75 mg", freq:"0+1+0", duration:30, unit:"days", meal:"after", continued:true, schedule:{noon:1} },
   { id:6, brand:"Dclot", en:"Clopidogrel", bn:"ক্লোপিডোগ্রেল", strength:"75 mg tablet", freq:"0+0+1", duration:30, unit:"days", meal:"after", continued:true, schedule:{night:1} },
@@ -55,15 +55,17 @@ const translations = {
   woundCareOverline:["SURGICAL WOUND CARE","অস্ত্রোপচারের ক্ষতের যত্ন"], woundIntro:["Record each local application after it has been completed.","প্রতিবার লাগানো শেষ হলে এখানে চিহ্নিত করুন।"], iodineStrength:["50 mg — as written on the discharge summary","৫০ মিগ্রা — ডিসচার্জ সামারিতে যেভাবে লেখা"], applyLocally:["Apply locally · 3 times daily","স্থানীয়ভাবে লাগান · দিনে ৩ বার"], woundSafety:["Use on the surgical scar only as directed by the surgical team. Confirm the exact product and strength on the tube.","সার্জারি টিমের নির্দেশনা অনুযায়ী শুধু ক্ষতে ব্যবহার করুন। টিউবের সঠিক নাম ও মাত্রা মিলিয়ে নিন।"],
   asNeededOverline:["AS-NEEDED MEDICINE","প্রয়োজনমতো ওষুধ"], sosIntro:["Only record use when it has actually been given according to the doctor's instructions.","চিকিৎসকের নির্দেশনা অনুযায়ী বাস্তবে ব্যবহার করার পরেই নথিভুক্ত করুন।"], rectalRoute:["Rectal use only — not for swallowing.","শুধু পায়ুপথে ব্যবহার — মুখে খাওয়ার জন্য নয়।"], sosDuration:["Prescribed window: 5 days from the first-dose date.","প্রথম ডোজের তারিখ থেকে নির্ধারিত সময়: ৫ দিন।"], logUse:["Log use","ব্যবহার নথিভুক্ত করুন"], sosWarningTitle:["Important","গুরুত্বপূর্ণ"], sosWarning:["Follow the doctor's exact dose, interval and maximum-use instructions. This log does not decide when another dose is safe. If pain is severe or worsening after surgery, contact the treating team.","চিকিৎসকের নির্দিষ্ট ডোজ, ব্যবধান ও সর্বোচ্চ ব্যবহারের নির্দেশনা অনুসরণ করুন। এই হিসাব পরবর্তী ডোজ নিরাপদ কি না নির্ধারণ করে না। অস্ত্রোপচারের পর ব্যথা তীব্র বা বাড়তে থাকলে চিকিৎসক দলের সঙ্গে যোগাযোগ করুন।"],
   historyOverline:["YOUR RECORD","আপনার হিসাব"], historyIntro:["Past entries are shown as taken, marked missed or not recorded. Blank entries are not automatically treated as missed.","আগের হিসাব নেওয়া হয়েছে, বাদ গেছে বা নথিভুক্ত হয়নি—এভাবে দেখানো হবে। ফাঁকা ঘরকে নিজে থেকে বাদ গেছে বলে ধরা হবে না।"], chooseDate:["Choose a date","তারিখ নির্বাচন করুন"], editThisDay:["Open this day's checklist","এই দিনের চেকলিস্ট খুলুন"], recentDays:["Recent days","সাম্প্রতিক দিনগুলো"],
-  settingsOverline:["PERSONALISE HEARTCARE","HeartCare সাজিয়ে নিন"], settingsIntro:["Set the tracking dates and optional on-page reminder times. No sound or system notifications are used.","ট্র্যাকিংয়ের তারিখ এবং চাইলে পেজের ভেতরের রিমাইন্ডারের সময় দিন। কোনো শব্দ বা সিস্টেম নোটিফিকেশন ব্যবহার করা হয় না।"], firstDoseDate:["First-dose date (for medicine duration)","প্রথম ডোজের তারিখ (ওষুধের মেয়াদ গণনার জন্য)"], trackingStart:["30-day tracking starts","৩০ দিনের ট্র্যাকিং শুরু"], optionalTimes:["Optional visual reminder times","ঐচ্ছিক দৃশ্যমান রিমাইন্ডারের সময়"], optionalTimesText:["Leave blank if you do not want an on-page time reminder. The page must stay open.","পেজে সময়ভিত্তিক রিমাইন্ডার না চাইলে ফাঁকা রাখুন। পেজ খোলা রাখতে হবে।"], morning:["Morning","সকাল"], noon:["Noon","দুপুর"], night:["Night","রাত"], saveSettings:["Save settings","সেটিংস সংরক্ষণ করুন"], backupTitle:["Backup your records","আপনার তথ্যের ব্যাকআপ নিন"], backupText:["Data is saved in this browser on this phone. Export a backup regularly, especially before changing phones or browsers.","তথ্য এই ফোনের এই ব্রাউজারে সংরক্ষিত থাকে। ফোন বা ব্রাউজার বদলানোর আগে নিয়মিত ব্যাকআপ ডাউনলোড করুন।"], downloadBackup:["Download backup","ব্যাকআপ ডাউনলোড"], restoreBackup:["Restore backup","ব্যাকআপ ফিরিয়ে আনুন"], prescriptionReference:["Prescription reference (items 1–19)","প্রেসক্রিপশন রেফারেন্স (১–১৯)"],
+  settingsOverline:["PERSONALISE HEARTCARE","HeartCare সাজিয়ে নিন"], settingsIntro:["Set the tracking dates and optional on-page reminder times. No sound or system notifications are used.","ট্র্যাকিংয়ের তারিখ এবং চাইলে পেজের ভেতরের রিমাইন্ডারের সময় দিন। কোনো শব্দ বা সিস্টেম নোটিফিকেশন ব্যবহার করা হয় না।"], firstDoseDate:["First-dose date (for medicine duration)","প্রথম ডোজের তারিখ (ওষুধের মেয়াদ গণনার জন্য)"], trackingStart:["30-day tracking starts","৩০ দিনের ট্র্যাকিং শুরু"], textSize:["Text size","লেখার আকার"], textSizeText:["Choose a comfortable size. Large is recommended for easier reading.","সহজে পড়ার জন্য সুবিধাজনক আকার বেছে নিন। বড় আকারটি সুপারিশ করা হচ্ছে।"], fontSizeNormal:["Standard","স্বাভাবিক"], fontSizeLarge:["Large","বড়"], fontSizeExtraLarge:["Extra large","আরও বড়"], optionalTimes:["Optional visual reminder times","ঐচ্ছিক দৃশ্যমান রিমাইন্ডারের সময়"], optionalTimesText:["Leave blank if you do not want an on-page time reminder. The page must stay open.","পেজে সময়ভিত্তিক রিমাইন্ডার না চাইলে ফাঁকা রাখুন। পেজ খোলা রাখতে হবে।"], morning:["Morning","সকাল"], noon:["Noon","দুপুর"], night:["Night","রাত"], saveSettings:["Save settings","সেটিংস সংরক্ষণ করুন"], backupTitle:["Backup your records","আপনার তথ্যের ব্যাকআপ নিন"], backupText:["Data is saved in this browser on this phone. Export a backup regularly, especially before changing phones or browsers.","তথ্য এই ফোনের এই ব্রাউজারে সংরক্ষিত থাকে। ফোন বা ব্রাউজার বদলানোর আগে নিয়মিত ব্যাকআপ ডাউনলোড করুন।"], downloadBackup:["Download backup","ব্যাকআপ ডাউনলোড"], restoreBackup:["Restore backup","ব্যাকআপ ফিরিয়ে আনুন"], prescriptionReference:["Prescription reference (items 1–19)","প্রেসক্রিপশন রেফারেন্স (১–১৯)"],
+  daysTaken:["days in course","দিনের কোর্সে"], daysLeft:["days left","দিন বাকি"], courseStarts:["Starts on","শুরু হবে"], courseComplete:["Course complete","কোর্স সম্পন্ন"], splitDose:["½ tablet morning + ½ tablet night","সকালে ½ ট্যাবলেট + রাতে ½ ট্যাবলেট"], firstDoseTime:["First-dose time of day","প্রথম ডোজের সময়"],
   medicalSafetyTitle:["Please verify the prescription","প্রেসক্রিপশনটি নিশ্চিত করুন"], medicalSafetyText:["All 19 medicines in the supplied list are included. Don-A (Domperidone, #12) is listed as SOS on the discharge sheet, while this tracker shows the 1+1+1 before-meal schedule supplied for tracking. Confirm the intended frequency with the prescriber/pharmacist. Never double a missed dose or change a medicine based on this app.","আপনার দেওয়া ১৯টি ওষুধই এখানে অন্তর্ভুক্ত। ডিসচার্জ শিটে Don-A (Domperidone, #১২)-এর পাশে SOS লেখা আছে, আর এই ট্র্যাকার-এ ১+১+১ খাবারের আগের সময়সূচি দেখানো হয়েছে। সঠিক ব্যবহারের নিয়ম চিকিৎসক/ফার্মাসিস্টের সঙ্গে নিশ্চিত করুন। বাদ যাওয়া ডোজ কখনো দ্বিগুণ করবেন না বা এই অ্যাপ দেখে ওষুধ পরিবর্তন করবেন না।"],
-  footerText:["A family checklist — not a substitute for medical advice.","পরিবারের চেকলিস্ট — চিকিৎসকের পরামর্শের বিকল্প নয়।"]
+  footerText:["A family checklist — not a substitute for medical advice.","পরিবারের চেকলিস্ট — চিকিৎসকের পরামর্শের বিকল্প নয়।"], close:["Close","বন্ধ করুন"], viewImage:["View medicine image full screen","ওষুধের ছবি পুরো পর্দায় দেখুন"]
 };
 
 const defaultState = {
   settings: {
-    language:"both", theme:"light",
+    language:"en", theme:"light", fontSize:"large",
     firstDoseDate:KEYS.firstDoseDefault,
+    firstDoseSlot:"night",
     trackingStartDate:KEYS.planStartDefault,
     reminders:{morning:"",noon:"",night:""}
   },
@@ -75,17 +77,73 @@ let activeScreen = "homeScreen";
 let selectedDate = "";
 let selectedSlot = "morning";
 let toastTimer = null;
+let lastImageTrigger = null;
 
 function clone(value) { return JSON.parse(JSON.stringify(value)); }
+function isPlainObject(value) {
+  return value !== null && typeof value === "object" && !Array.isArray(value);
+}
+function isDateKey(value) {
+  return typeof value === "string" && parseKey(value) !== null;
+}
+function isTimeValue(value) {
+  return typeof value === "string" && /^(?:[01]\d|2[0-3]):[0-5]\d$/.test(value);
+}
+function normaliseSettings(settings) {
+  const raw = isPlainObject(settings) ? settings : {};
+  const reminders = isPlainObject(raw.reminders) ? raw.reminders : {};
+  return {
+    language: raw.language === "bn" ? "bn" : "en",
+    theme: ["light", "dark"].includes(raw.theme) ? raw.theme : defaultState.settings.theme,
+    fontSize: ["normal", "large", "xlarge"].includes(raw.fontSize) ? raw.fontSize : defaultState.settings.fontSize,
+    firstDoseDate: isDateKey(raw.firstDoseDate) ? raw.firstDoseDate : defaultState.settings.firstDoseDate,
+    firstDoseSlot: ["morning", "noon", "night"].includes(raw.firstDoseSlot) ? raw.firstDoseSlot : defaultState.settings.firstDoseSlot,
+    trackingStartDate: isDateKey(raw.trackingStartDate) ? raw.trackingStartDate : defaultState.settings.trackingStartDate,
+    reminders: {
+      morning: isTimeValue(reminders.morning) ? reminders.morning : "",
+      noon: isTimeValue(reminders.noon) ? reminders.noon : "",
+      night: isTimeValue(reminders.night) ? reminders.night : ""
+    }
+  };
+}
+function normaliseLogs(logs) {
+  if (!isPlainObject(logs)) return {};
+  const result = {};
+  Object.entries(logs).forEach(([date, rawLog]) => {
+    if (!isDateKey(date) || !isPlainObject(rawLog)) return;
+    const doses = {};
+    if (isPlainObject(rawLog.doses)) {
+      Object.entries(rawLog.doses).forEach(([key, entry]) => {
+        if (!isPlainObject(entry) || !["taken", "missed"].includes(entry.status)) return;
+        doses[key] = { status: entry.status, ...(typeof entry.at === "string" ? { at: entry.at } : {}) };
+      });
+    }
+    const sos = Array.isArray(rawLog.sos)
+      ? rawLog.sos
+        .filter(entry => isPlainObject(entry) && entry.medicineId === 18 && typeof entry.at === "string")
+        .map(entry => ({ medicineId: 18, at: entry.at }))
+      : [];
+    result[date] = { doses, wound: isPlainObject(rawLog.wound) ? rawLog.wound : {}, sos };
+  });
+  return result;
+}
+function normaliseMedStartDates(dates) {
+  if (!isPlainObject(dates)) return {};
+  return Object.fromEntries(Object.entries(dates).filter(([id, date]) => /^\d+$/.test(id) && isDateKey(date)));
+}
+function normaliseState(raw) {
+  const source = isPlainObject(raw) ? raw : {};
+  return {
+    settings: normaliseSettings(source.settings),
+    logs: normaliseLogs(source.logs),
+    medStartDates: normaliseMedStartDates(source.medStartDates)
+  };
+}
 function loadState() {
   try {
     const saved = JSON.parse(localStorage.getItem(KEYS.storage) || "null");
     if (!saved) return clone(defaultState);
-    return {
-      settings:{...defaultState.settings,...(saved.settings||{}),reminders:{...defaultState.settings.reminders,...((saved.settings||{}).reminders||{})}},
-      logs:saved.logs && typeof saved.logs==="object" ? saved.logs : {},
-      medStartDates:saved.medStartDates && typeof saved.medStartDates==="object" ? saved.medStartDates : {}
-    };
+    return normaliseState(saved);
   } catch (e) { console.warn(e); return clone(defaultState); }
 }
 function saveState() {
@@ -93,10 +151,7 @@ function saveState() {
   catch(e) { showToast(tx("Could not save. Please download a backup and check phone storage.","সংরক্ষণ করা যায়নি। ব্যাকআপ ডাউনলোড করুন এবং ফোনের স্টোরেজ দেখুন।")); }
 }
 function tx(en,bn) {
-  const lang=state.settings.language||"both";
-  if(lang==="en") return en;
-  if(lang==="bn") return bn;
-  return `${en} / ${bn}`;
+  return state.settings.language==="bn" ? bn : en;
 }
 function tr(key) {
   const pair=translations[key];
@@ -109,6 +164,7 @@ function applyTranslations() {
   document.getElementById("themeGlyph").textContent=dark?"☀":"☾";
   document.getElementById("themeLabel").textContent=dark?tr("lightMode"):tr("darkMode");
   document.body.dataset.theme=state.settings.theme;
+  document.body.dataset.fontSize=state.settings.fontSize||defaultState.settings.fontSize;
   document.documentElement.lang=state.settings.language==="bn"?"bn":"en";
   document.querySelector('meta[name="theme-color"]').content=dark?"#101c23":"#f3f7f8";
 }
@@ -116,57 +172,87 @@ function localKey(date=new Date()) {
   return `${date.getFullYear()}-${String(date.getMonth()+1).padStart(2,"0")}-${String(date.getDate()).padStart(2,"0")}`;
 }
 function parseKey(key) {
-  if(!key) return null;
+  if(typeof key !== "string" || !/^\d{4}-\d{2}-\d{2}$/.test(key)) return null;
   const [y,m,d]=key.split("-").map(Number);
-  return new Date(y,m-1,d,12,0,0,0);
+  const date=new Date(y,m-1,d,12,0,0,0);
+  return date.getFullYear()===y&&date.getMonth()===m-1&&date.getDate()===d?date:null;
 }
 function shiftKey(key,days) {
-  const d=parseKey(key); d.setDate(d.getDate()+days); return localKey(d);
+  const d=parseKey(key); if(!d||!Number.isFinite(days)) return null;
+  d.setDate(d.getDate()+days); return localKey(d);
 }
 function diffDays(a,b) {
   const da=parseKey(a), db=parseKey(b);
+  if(!da||!db) return NaN;
   return Math.round((Date.UTC(db.getFullYear(),db.getMonth(),db.getDate())-Date.UTC(da.getFullYear(),da.getMonth(),da.getDate()))/86400000);
 }
 function addDuration(start,duration,unit) {
   const d=parseKey(start);
-  if(unit==="month") d.setMonth(d.getMonth()+duration);
+  if(!d||!Number.isFinite(duration)) return null;
+  if(unit==="month") {
+    const day=d.getDate();
+    d.setDate(1);
+    d.setMonth(d.getMonth()+duration);
+    const lastDay=new Date(d.getFullYear(),d.getMonth()+1,0).getDate();
+    d.setDate(Math.min(day,lastDay));
+  }
   else d.setDate(d.getDate()+duration);
   return localKey(d);
 }
 function endDateInclusive(start,med) {
-  return shiftKey(addDuration(start,med.duration,med.unit),-1);
+  const end=addDuration(start,med.duration,med.unit);
+  return end?shiftKey(end,-1):null;
 }
 function formatDate(key,opts={weekday:"long",day:"numeric",month:"short",year:"numeric"}) {
   const d=parseKey(key);
+  if(!d) return "—";
   const locale=state.settings.language==="bn"?"bn-BD":"en-GB";
   return new Intl.DateTimeFormat(locale,opts).format(d);
 }
 function startForMed(med) { return state.medStartDates[String(med.id)] || state.settings.firstDoseDate || KEYS.firstDoseDefault; }
 function planEnd() { return shiftKey(state.settings.trackingStartDate,KEYS.trackingDays-1); }
+function slotIndex(slot) { return {morning:0,noon:1,night:2}[slot] ?? 0; }
 function planDayNumber(key) {
   const delta=diffDays(state.settings.trackingStartDate,key);
   return delta>=0 && delta<KEYS.trackingDays ? delta+1 : null;
 }
 function isFuture(key) { return key>localKey(); }
-function isActiveOn(med,key) {
-  if(key<startForMed(med)) return false;
+function isActiveOn(med,key,slot) {
+  if(!med||!isDateKey(key)||!isDateKey(startForMed(med))) return false;
+  const start=startForMed(med);
+  if(key<start) return false;
+  if(key===start && slot && slotIndex(slot)<slotIndex(state.settings.firstDoseSlot)) return false;
   if(med.continued) return key<=planEnd();
-  return key<=endDateInclusive(startForMed(med),med);
+  return key<=endDateInclusive(start,med);
+}
+function courseLengthDays(med) {
+  const start=startForMed(med), end=endDateInclusive(start,med);
+  const length=diffDays(start,end)+1;
+  return Number.isFinite(length)&&length>0?length:med.duration;
+}
+function medicineProgress(med,key=localKey(),slot=selectedSlot) {
+  const start=startForMed(med), total=courseLengthDays(med);
+  const asOf=key>localKey()?localKey():key;
+  const slotDelta=diffDays(start,asOf)*3+slotIndex(slot)-slotIndex(state.settings.firstDoseSlot);
+  const elapsed=slotDelta<0?0:Math.min(total,Math.floor(slotDelta/3)+1);
+  return { start, total, elapsed, left:Math.max(0,total-elapsed), beforeStart:asOf<start, complete:elapsed>=total };
 }
 function getLog(key=selectedDate) {
-  if(!state.logs[key]) state.logs[key]={doses:{},wound:{},sos:[]};
+  if(!isPlainObject(state.logs[key])) state.logs[key]={doses:{},wound:{},sos:[]};
   const log=state.logs[key];
-  if(!log.doses) log.doses={};
-  if(!log.wound) log.wound={};
+  if(!isPlainObject(log.doses)) log.doses={};
+  if(!isPlainObject(log.wound)) log.wound={};
   if(!Array.isArray(log.sos)) log.sos=[];
   return log;
 }
 function doseKey(medId,slot) { return `${medId}-${slot}`; }
 function getDoseStatus(medId,slot,key=selectedDate) {
-  return state.logs[key]?.doses?.[doseKey(medId,slot)]?.status || "pending";
+  const doses=state.logs[key]?.doses;
+  const status=isPlainObject(doses)?doses[doseKey(medId,slot)]?.status:null;
+  return ["taken","missed"].includes(status)?status:"pending";
 }
 function setDoseStatus(medId,slot,status) {
-  if(isFuture(selectedDate)) return;
+  if(isFuture(selectedDate)||!["taken","missed","pending"].includes(status)) return;
   const log=getLog();
   const key=doseKey(medId,slot);
   if(status==="pending") delete log.doses[key];
@@ -174,7 +260,9 @@ function setDoseStatus(medId,slot,status) {
   saveState(); renderAll();
 }
 function getActiveForSlot(slot,key=selectedDate) {
-  return meds.filter(m=>m.schedule && m.schedule[slot]!==undefined && isActiveOn(m,key));
+  return meds
+    .filter(m=>m.schedule && m.schedule[slot]!==undefined && isActiveOn(m,key,slot))
+    .sort((a,b)=>(a.meal==="before"?0:1)-(b.meal==="before"?0:1)||a.id-b.id);
 }
 function getDailyTasks(key) {
   const doses=[];
@@ -182,7 +270,7 @@ function getDailyTasks(key) {
   return {doses};
 }
 function countDay(key) {
-  const tasks=getDailyTasks(key), log=state.logs[key]||{doses:{}};
+  const tasks=getDailyTasks(key), log=isPlainObject(state.logs[key])?state.logs[key]:{doses:{}};
   const total=tasks.doses.length;
   let taken=0, missed=0;
   tasks.doses.forEach(t=>{const s=log.doses?.[doseKey(t.id,t.slot)]?.status;if(s==="taken")taken++;if(s==="missed")missed++;});
@@ -203,7 +291,7 @@ function mealText(meal) {
   if(meal==="before") return {label:tx("Before food","খাবারের আগে"),cls:"before"};
   if(meal==="after") return {label:tx("After food","খাবারের পরে"),cls:"after"};
   if(meal==="apply") return {label:tx("Apply to scar","ক্ষতে লাগান"),cls:"after"};
-  return {label:tx("Not specified on discharge sheet","ডিসচার্জ কাগজে উল্লেখ নেই"),cls:"unspecified"};
+  return null;
 }
 function safe(s) {
   return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]));
@@ -236,10 +324,13 @@ function medicineDisplayName(medicine) {
 function medicineImageSrc(id) {
   return `assets/medicines/${medicinePhotoFiles[id]}`;
 }
+function imageTrigger(src,alt,className="") {
+  return `<button type="button" class="image-trigger ${className}" data-image-fullscreen data-image-src="${safe(src)}" data-image-alt="${safe(alt)}" aria-label="${safe(tr("viewImage"))}"><img class="medicine-photo" src="${safe(src)}" alt="${safe(alt)}" loading="lazy" decoding="async"></button>`;
+}
 function medicineArt(id) {
   const medicine = meds.find(item => item.id === id);
   const alt = medicine ? `${medicineDisplayName(medicine)} package` : `Medicine ${id} package`;
-  return `<img class="medicine-photo" src="${medicineImageSrc(id)}" alt="${safe(alt)}" loading="lazy" decoding="async">`;
+  return imageTrigger(medicineImageSrc(id),alt);
 }
 
 function showScreen(id) {
@@ -253,9 +344,36 @@ function showToast(message) {
   toast.textContent=message; toast.classList.add("show");
   clearTimeout(toastTimer); toastTimer=setTimeout(()=>toast.classList.remove("show"),2300);
 }
+function openImageLightbox(trigger) {
+  const lightbox=document.getElementById("imageLightbox");
+  const image=document.getElementById("imageLightboxImage");
+  const caption=document.getElementById("imageLightboxCaption");
+  if(!lightbox||!image||!caption)return;
+  lastImageTrigger=trigger;
+  image.src=trigger.dataset.imageSrc||"";
+  image.alt=trigger.dataset.imageAlt||"";
+  caption.textContent=trigger.dataset.imageAlt||tx("Medicine image","ওষুধের ছবি");
+  lightbox.hidden=false;
+  document.body.classList.add("lightbox-open");
+  document.getElementById("closeImageLightbox")?.focus();
+}
+function closeImageLightbox() {
+  const lightbox=document.getElementById("imageLightbox");
+  if(!lightbox)return;
+  lightbox.hidden=true;
+  document.getElementById("imageLightboxImage").src="";
+  document.body.classList.remove("lightbox-open");
+  if(lastImageTrigger&&document.contains(lastImageTrigger))lastImageTrigger.focus();
+  lastImageTrigger=null;
+}
 function defaultSelectedDate() {
   const today=localKey();
   return today<state.settings.trackingStartDate?state.settings.trackingStartDate:today;
+}
+function historyStartKey() {
+  return [KEYS.historyStart,state.settings.firstDoseDate,state.settings.trackingStartDate,...Object.values(state.medStartDates||{})]
+    .filter(isDateKey)
+    .sort()[0]||KEYS.historyStart;
 }
 function renderHome() {
   const key=defaultSelectedDate();
@@ -278,12 +396,12 @@ function renderDateNavigator() {
   document.getElementById("hubDate").textContent=formatDate(selectedDate,{weekday:"long",day:"numeric",month:"short",year:"numeric"});
   const day=planDayNumber(selectedDate);
   document.getElementById("hubDayLabel").textContent=day?tx(`Day ${day} of 30`,`৩০ দিনের ${day}তম দিন`):selectedDate<state.settings.trackingStartDate?tx("Pre-tracking history","ট্র্যাকিং শুরুর আগের হিসাব"):tx("Outside tracking period","ট্র্যাকিং সময়ের বাইরে");
-  document.getElementById("previousDate").disabled=selectedDate<=KEYS.historyStart;
+  document.getElementById("previousDate").disabled=selectedDate<=historyStartKey();
   document.getElementById("nextDate").disabled=selectedDate>=localKey();
   const notice=document.getElementById("dateNotice");
   if(isFuture(selectedDate)) {
     notice.hidden=false;
-    notice.textContent=tx("This is a preview. You cannot record future doses. The first tracking day is 14 November 2026.","এটি আগাম দেখা। ভবিষ্যতের ডোজ নথিভুক্ত করা যাবে না। প্রথম ট্র্যাকিং দিন ১৪ নভেম্বর ২০২৬।");
+    notice.textContent=tx(`This is a preview. You cannot record future doses. Tracking starts on ${formatDate(state.settings.trackingStartDate,{day:"numeric",month:"long",year:"numeric"})}.`,`এটি আগাম দেখা। ভবিষ্যতের ডোজ নথিভুক্ত করা যাবে না। ট্র্যাকিং শুরু হবে ${formatDate(state.settings.trackingStartDate,{day:"numeric",month:"long",year:"numeric"})}।`);
   } else if(selectedDate<state.settings.trackingStartDate) {
     notice.hidden=false;
     notice.textContent=tx("Historical entry: only record a dose if you know it was actually taken or missed. Unrecorded does not mean missed.","আগের দিনের হিসাব: নিশ্চিতভাবে নেওয়া বা বাদ যাওয়ার তথ্য থাকলেই নথিভুক্ত করুন। ফাঁকা মানেই বাদ নয়।");
@@ -317,7 +435,6 @@ function renderSession() {
   const future=isFuture(selectedDate);
   let alert="";
   if(future) alert=`<div class="inline-alert">${tx("Preview only — recording is available on the selected date.","শুধু আগাম দেখা — নির্বাচিত দিনে নথিভুক্ত করা যাবে।")}</div>`;
-  if(list.some(m=>m.id===12)) alert+=`<div class="inline-alert">${tx("Don-A (Domperidone) is included in the 19-medicine list. The discharge sheet marks it SOS; this checklist shows the 1+1+1 before-meal schedule entered for tracking. Confirm the intended frequency with the prescriber.","Don-A (Domperidone) ১৯টি ওষুধের তালিকায় অন্তর্ভুক্ত। ডিসচার্জ শিটে SOS লেখা আছে; ট্র্যাকিংয়ের জন্য এখানে ১+১+১ খাবারের আগের সময়সূচি দেখানো হয়েছে। সঠিক ব্যবহারের নিয়ম চিকিৎসকের সঙ্গে নিশ্চিত করুন।")}</div>`;
   document.getElementById("sessionAlert").innerHTML=alert;
   const container=document.getElementById("medicineCardList");
   if(!list.length) {
@@ -327,6 +444,12 @@ function renderSession() {
       const status=getDoseStatus(m.id,selectedSlot,selectedDate);
       const meal=mealText(m.meal);
       const amount=m.id===19?tx("Apply locally","স্থানীয়ভাবে লাগান"):doseAmount(m.schedule[selectedSlot]);
+      const progress=medicineProgress(m,selectedDate,selectedSlot);
+      const progressText=progress.beforeStart
+        ? `${tr("courseStarts")} ${formatDate(progress.start,{day:"numeric",month:"short",year:"numeric"})}`
+        : progress.complete
+          ? `${progress.elapsed} ${tr("daysTaken")} · ${tr("courseComplete")}`
+          : `${progress.elapsed} ${tr("daysTaken")} · ${progress.left} ${tr("daysLeft")}`;
       const statusLabel=status==="taken"?tx("Taken","নেওয়া হয়েছে"):status==="missed"?tx("Marked missed","বাদ হিসেবে চিহ্নিত"):tx("Not recorded","নথিভুক্ত হয়নি");
       const statusClass=status==="taken"?"taken":status==="missed"?"missed":"";
       const conflict=m.id===12?`<div class="medicine-warning">${tx("Don-A (Domperidone) is included. The discharge sheet marks it SOS, while this checklist shows the 1+1+1 before-meal schedule supplied for this tracker. Confirm the intended frequency with the prescriber.","Don-A (Domperidone) তালিকায় অন্তর্ভুক্ত। ডিসচার্জ শিটে SOS লেখা আছে, আর এই চেকলিস্টে দেওয়া ১+১+১ খাবারের আগের সময়সূচি দেখানো হয়েছে। সঠিক ব্যবহারের নিয়ম চিকিৎসকের সঙ্গে নিশ্চিত করুন।")}</div>`:"";
@@ -336,7 +459,8 @@ function renderSession() {
           <div class="medicine-title-row"><h3>${m.id}. ${safe(medicineDisplayName(m))}</h3><span class="status-label ${statusClass}">${safe(statusLabel)}</span></div>
           <p class="medicine-bengali">${safe(m.bn)}</p>
           <div class="medicine-strength">${safe(m.strength)}</div>
-          <div class="dose-food-row"><span class="dose-pill">${safe(amount)}</span><span class="food-pill ${meal.cls}">${safe(meal.label)}</span></div>
+          <div class="dose-food-row"><span class="dose-pill">${safe(amount)}</span>${meal?`<span class="food-pill ${meal.cls}">${safe(meal.label)}</span>`:""}${m.doseNote==="split"?`<span class="dose-note">${safe(tr("splitDose"))}</span>`:""}</div>
+          <div class="medicine-progress">${safe(progressText)}</div>
         </div>
         <div class="medicine-actions">
           <button class="take-button ${status==="taken"?"is-taken":""}" data-dose-action="taken" data-med-id="${m.id}" ${future?"disabled":""} type="button">${status==="taken"?`✓ ${tx("Taken","নেওয়া হয়েছে")}`:`○ ${tx("Mark taken","নেওয়া হয়েছে টিক দিন")}`}</button>
@@ -362,28 +486,39 @@ function renderWound() {
   const start=startForMed(med);
   const end=endDateInclusive(start,med);
   const active=isActiveOn(med,selectedDate);
+  const woundWindow=med.unit==="days"?`${med.duration}-day`:`${med.duration}-${med.unit}`;
   document.getElementById("woundDuration").textContent=active
     ? tx(`Prescription window: ${formatDate(start,{day:"numeric",month:"short"})} – ${formatDate(end,{day:"numeric",month:"short",year:"numeric"})}. The same ticks appear in the Morning / Noon / Night medicine lists.`, `নির্ধারিত সময়: ${formatDate(start,{day:"numeric",month:"short"})} – ${formatDate(end,{day:"numeric",month:"short",year:"numeric"})}। একই টিক সকাল / দুপুর / রাতের ওষুধের তালিকাতেও দেখা যাবে।`)
-    : tx("The 14-day wound-care window is outside this selected date. Confirm with the surgical team before extending it.","নির্বাচিত তারিখটি ১৪ দিনের ক্ষত-যত্নের সময়সীমার বাইরে। সময় বাড়ানোর আগে সার্জারি টিমের সঙ্গে নিশ্চিত করুন।");
+    : tx(`The ${woundWindow} wound-care window is outside this selected date. Confirm with the surgical team before extending it.`,`নির্বাচিত তারিখটি ${med.duration} দিনের ক্ষত-যত্নের সময়সীমার বাইরে। সময় বাড়ানোর আগে সার্জারি টিমের সঙ্গে নিশ্চিত করুন।`);
   document.getElementById("woundTaskList").innerHTML=["morning","noon","night"].map(slot=>{
     const status=getDoseStatus(19,slot,selectedDate);
     const info=slotInfo[slot];
     const statusText=status==="taken"?tx("Recorded as done","সম্পন্ন হিসেবে নথিভুক্ত"):status==="missed"?tx("Marked not done","সম্পন্ন হয়নি হিসেবে চিহ্নিত"):tx("Not recorded yet","এখনও নথিভুক্ত হয়নি");
-    return `<div class="wound-task"><div><strong>${tx(info.en,info.bn)}</strong><small>${statusText}</small></div><button class="${status==="taken"?"done":""}" data-wound-slot="${slot}" data-wound-action="${status==="taken"?"pending":"taken"}" ${isFuture(selectedDate)||!active?"disabled":""}>${status==="taken"?tx("✓ Done · Undo","✓ সম্পন্ন · বাতিল"):tx("Mark done","সম্পন্ন করুন")}</button></div>`;
+    return `<div class="wound-task"><div><strong>${tx(info.en,info.bn)}</strong><small>${statusText}</small></div><button type="button" class="${status==="taken"?"done":""}" data-wound-slot="${slot}" data-wound-action="${status==="taken"?"pending":"taken"}" ${isFuture(selectedDate)||!active?"disabled":""}>${status==="taken"?tx("✓ Done · Undo","✓ সম্পন্ন · বাতিল"):tx("Mark done","সম্পন্ন করুন")}</button></div>`;
   }).join("");
 }
 function renderSos() {
+  const med=meds.find(item=>item.id===18);
+  const active=isActiveOn(med,selectedDate);
   document.getElementById("sosMedicineVisual").innerHTML=medicineArt(18);
-  const entries=state.logs[selectedDate]?.sos||[];
+  const entries=Array.isArray(state.logs[selectedDate]?.sos)?state.logs[selectedDate].sos:[];
+  document.getElementById("sosDurationText").textContent=active
+    ? tx(`Prescribed window: ${med.duration} days from the first-dose date.`,`নির্ধারিত সময়: প্রথম ডোজের তারিখ থেকে ${med.duration} দিন।`)
+    : tx(`This ${med.duration}-day as-needed medicine window is outside the selected date. Confirm before recording use.`,`নির্বাচিত তারিখটি এই ${med.duration} দিনের প্রয়োজনমতো ওষুধের সময়সীমার বাইরে। ব্যবহার নথিভুক্ত করার আগে নিশ্চিত করুন।`);
   document.getElementById("sosHistory").textContent=entries.length
     ? tx(`${entries.length} use(s) logged for this date. Last: ${new Date(entries[entries.length-1].at).toLocaleTimeString([], {hour:"numeric",minute:"2-digit"})}.`,`এই তারিখে ${entries.length} বার ব্যবহার নথিভুক্ত। সর্বশেষ: ${new Date(entries[entries.length-1].at).toLocaleTimeString([], {hour:"numeric",minute:"2-digit"})}।`)
     : tx("No use logged for this date.","এই তারিখে কোনো ব্যবহার নথিভুক্ত হয়নি।");
-  document.getElementById("logSosButton").disabled=isFuture(selectedDate);
+  document.getElementById("logSosButton").disabled=isFuture(selectedDate)||!active;
 }
 function renderHistory() {
   const dateInput=document.getElementById("historyDate");
-  if(!dateInput.value) dateInput.value=selectedDate;
-  const key=dateInput.value||selectedDate;
+  const minimum=historyStartKey(), maximum=localKey();
+  dateInput.min=minimum;
+  dateInput.max=maximum;
+  if(!isDateKey(dateInput.value)||dateInput.value<minimum||dateInput.value>maximum) {
+    dateInput.value=isDateKey(selectedDate)&&selectedDate>=minimum&&selectedDate<=maximum?selectedDate:maximum;
+  }
+  const key=isDateKey(dateInput.value)&&dateInput.value>=minimum&&dateInput.value<=maximum?dateInput.value:maximum;
   const count=countDay(key);
   document.getElementById("historyDetail").innerHTML=`
     <h2>${safe(formatDate(key,{weekday:"long",day:"numeric",month:"long",year:"numeric"}))}</h2>
@@ -392,7 +527,7 @@ function renderHistory() {
   const days=[];
   for(let i=0;i<7;i++){
     const d=shiftKey(localKey(),-i);
-    if(d<KEYS.historyStart) continue;
+    if(d<historyStartKey()) continue;
     const c=countDay(d);
     days.push(`<div class="history-row"><div><strong>${safe(formatDate(d,{weekday:"short",day:"numeric",month:"short"}))}</strong><small>${c.taken} ${tx("taken","নেওয়া")} · ${c.missed} ${tx("missed","বাদ")} · ${c.pending} ${tx("unrecorded","নথিভুক্ত নয়")}</small></div><span>${c.percent}%</span></div>`);
   }
@@ -400,12 +535,14 @@ function renderHistory() {
 }
 function renderSettings() {
   document.getElementById("firstDoseDate").value=state.settings.firstDoseDate;
+  document.getElementById("firstDoseSlot").value=state.settings.firstDoseSlot;
   document.getElementById("trackingStartDate").value=state.settings.trackingStartDate;
+  document.getElementById("fontSizeSelect").value=state.settings.fontSize;
   document.getElementById("morningReminder").value=state.settings.reminders.morning||"";
   document.getElementById("noonReminder").value=state.settings.reminders.noon||"";
   document.getElementById("nightReminder").value=state.settings.reminders.night||"";
   document.getElementById("referenceList").innerHTML=meds.map(m=>`<article class="reference-item">
-    <img class="reference-thumb" src="${medicineImageSrc(m.id)}" alt="${safe(medicineDisplayName(m))} package" loading="lazy" decoding="async">
+    ${imageTrigger(medicineImageSrc(m.id),`${medicineDisplayName(m)} package`,`reference-image-trigger`)}
     <div class="reference-copy"><strong>${m.id}. ${safe(medicineDisplayName(m))}</strong>
     <span>${safe(m.strength)} · ${safe(m.freq)} · ${m.duration} ${m.unit}${m.continued?" · Continue: Yes":""}${m.meal==="before"?" · Before food":m.meal==="after"?" · After food":""}</span></div>
   </article>`).join("");
@@ -417,7 +554,7 @@ function renderReminder() {
     const t=state.settings.reminders[slot];
     if(t&&current>=t){
       const c=slotCounts(slot,localKey());
-      if(c.total>0&&!c.complete) due.push({slot,count:c});
+      if(c.total>0&&c.pending>0) due.push({slot,count:c});
     }
   });
   const banner=document.getElementById("visualReminder");
@@ -426,7 +563,7 @@ function renderReminder() {
     banner.innerHTML=due.map(item=>{
       const info=slotInfo[item.slot];
       const label=tx(info.en,info.bn);
-      const message=tx(`${item.count.total-item.count.taken} medicine(s) still need a checklist update.`,`আরও ${item.count.total-item.count.taken}টি ওষুধের চেকলিস্ট আপডেট বাকি।`);
+      const message=tx(`${item.count.pending} medicine(s) still need a checklist update.`,`আরও ${item.count.pending}টি ওষুধের চেকলিস্ট আপডেট বাকি।`);
       return `<div class="visual-reminder-row"><div class="visual-reminder-copy"><strong>${safe(tx("Time to check your medicines","ওষুধের চেকলিস্ট দেখার সময়"))} · ${safe(label)}</strong>${safe(message)}</div><button type="button" data-reminder-slot="${item.slot}">${safe(tx("Open","খুলুন"))}</button></div>`;
     }).join("");
     document.title="• "+tx("Medicine reminder","ওষুধের রিমাইন্ডার")+" | HeartCare";
@@ -460,10 +597,13 @@ function recordDoseFromButton(button) {
 }
 function saveSettings() {
   const first=document.getElementById("firstDoseDate").value;
+  const firstSlot=document.getElementById("firstDoseSlot").value;
   const tracking=document.getElementById("trackingStartDate").value;
-  if(!first||!tracking) { showToast(tx("Please enter both dates.","দুটি তারিখই লিখুন।")); return; }
+  if(!isDateKey(first)||!isDateKey(tracking)) { showToast(tx("Please enter both dates.","দুটি তারিখই লিখুন।")); return; }
   state.settings.firstDoseDate=first;
+  state.settings.firstDoseSlot=["morning","noon","night"].includes(firstSlot)?firstSlot:defaultState.settings.firstDoseSlot;
   state.settings.trackingStartDate=tracking;
+  state.settings.fontSize=["normal","large","xlarge"].includes(document.getElementById("fontSizeSelect").value)?document.getElementById("fontSizeSelect").value:defaultState.settings.fontSize;
   state.settings.reminders={
     morning:document.getElementById("morningReminder").value,
     noon:document.getElementById("noonReminder").value,
@@ -472,7 +612,11 @@ function saveSettings() {
   saveState(); renderAll(); showToast(tx("Settings saved.","সেটিংস সংরক্ষিত হয়েছে।"));
 }
 function logSosUse() {
-  if(isFuture(selectedDate)) return;
+  const med=meds.find(item=>item.id===18);
+  if(isFuture(selectedDate)||!isActiveOn(med,selectedDate)) {
+    showToast(tx("This as-needed medicine is outside its prescribed window.","এই প্রয়োজনমতো ওষুধের নির্ধারিত সময়সীমা শেষ হয়েছে বা শুরু হয়নি।"));
+    return;
+  }
   if(!confirm(tx("Record one Tramadol suppository use now? Only log it if it was actually given as prescribed.","এখন একটি ট্রামাডল সাপোজিটরি ব্যবহার নথিভুক্ত করবেন? চিকিৎসকের নির্দেশনা অনুযায়ী বাস্তবে দেওয়া হলেই নথিভুক্ত করুন।"))) return;
   getLog(selectedDate).sos.push({at:new Date().toISOString(),medicineId:18});
   saveState(); renderSos(); renderHistory(); showToast(tx("SOS use recorded.","SOS ব্যবহার নথিভুক্ত হয়েছে।"));
@@ -489,9 +633,9 @@ function importBackup(file) {
   reader.onload=()=>{
     try{
       const parsed=JSON.parse(reader.result), incoming=parsed.state||parsed;
-      if(!incoming.settings||!incoming.logs)throw new Error("Invalid backup");
+      if(!isPlainObject(incoming)||!isPlainObject(incoming.settings)||!isPlainObject(incoming.logs))throw new Error("Invalid backup");
       if(!confirm(tx("Restore this backup? It will replace HeartCare data saved in this browser.","এই ব্যাকআপ ফিরিয়ে আনবেন? এই ব্রাউজারে সংরক্ষিত HeartCare তথ্য প্রতিস্থাপিত হবে।")))return;
-      state={settings:{...defaultState.settings,...incoming.settings,reminders:{...defaultState.settings.reminders,...(incoming.settings.reminders||{})}},logs:incoming.logs||{},medStartDates:incoming.medStartDates||{}};
+      state=normaliseState(incoming);
       saveState(); renderAll(); showToast(tx("Backup restored.","ব্যাকআপ ফিরিয়ে আনা হয়েছে।"));
     }catch(e){showToast(tx("This is not a valid HeartCare backup.","এটি সঠিক HeartCare ব্যাকআপ নয়।"));}
   };
@@ -501,6 +645,14 @@ function bindEvents() {
   document.getElementById("homeBrand").addEventListener("click",()=>showScreen("homeScreen"));
   document.getElementById("languageSelect").addEventListener("change",e=>{state.settings.language=e.target.value;saveState();renderAll();});
   document.getElementById("themeToggle").addEventListener("click",()=>{state.settings.theme=state.settings.theme==="dark"?"light":"dark";saveState();renderAll();});
+  document.getElementById("fontSizeSelect").addEventListener("change",e=>{if(["normal","large","xlarge"].includes(e.target.value)){state.settings.fontSize=e.target.value;saveState();renderAll();}});
+  document.getElementById("closeImageLightbox").addEventListener("click",closeImageLightbox);
+  document.getElementById("imageLightbox").addEventListener("click",e=>{if(e.target===e.currentTarget)closeImageLightbox();});
+  document.addEventListener("click",e=>{
+    const trigger=e.target.closest?.("[data-image-fullscreen]");
+    if(trigger)openImageLightbox(trigger);
+  });
+  document.addEventListener("keydown",e=>{if(e.key==="Escape")closeImageLightbox();});
   document.querySelectorAll("[data-go]").forEach(b=>b.addEventListener("click",()=>{
     if(b.dataset.go==="medicineHub") { selectedDate=defaultSelectedDate(); showScreen("medicineHubScreen"); }
     else showScreen(b.dataset.go);
