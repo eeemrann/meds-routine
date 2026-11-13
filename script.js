@@ -7,8 +7,9 @@
 const KEYS = {
   storage: "heartcare-mobile-v2",
   shareVersion: 1,
-  planStartDefault: "2026-11-12",
+  planStartDefault: "2026-11-13",
   legacyPlanStartDefault: "2026-11-14",
+  previousPlanStartDefault: "2026-11-12",
   firstDoseDefault: "2026-11-12",
   trackingDays: 30,
   historyStart: "2026-11-12"
@@ -97,7 +98,7 @@ function normaliseSettings(settings) {
   const firstDoseDate = isDateKey(raw.firstDoseDate) ? raw.firstDoseDate : defaultState.settings.firstDoseDate;
   const firstDoseSlot = ["morning", "noon", "night"].includes(raw.firstDoseSlot) ? raw.firstDoseSlot : defaultState.settings.firstDoseSlot;
   const savedTrackingStart = isDateKey(raw.trackingStartDate) ? raw.trackingStartDate : defaultState.settings.trackingStartDate;
-  const trackingStartDate = savedTrackingStart === KEYS.legacyPlanStartDefault
+  const trackingStartDate = [KEYS.legacyPlanStartDefault, KEYS.previousPlanStartDefault].includes(savedTrackingStart)
     && firstDoseDate === KEYS.firstDoseDefault
     && firstDoseSlot === defaultState.settings.firstDoseSlot
     ? KEYS.planStartDefault
